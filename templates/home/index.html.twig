@@ -1,12 +1,177 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application Nature</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-primary { background-color: #1b4332; }
+        .text-primary { color: #1b4332; }
+        .bg-secondary { background-color: #2d6a4f; }
+        .bg-accent { background-color: #ffd700; }
+    </style>
+</head>
+<body class="min-h-screen bg-[#e8e3d5] flex flex-col">
+    <div class="flex-grow p-6">
+        {# Navigation #}
+        <nav class="flex items-center justify-between mb-12">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary p-2 rounded-full">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                <span class="text-primary text-xl font-bold">Web Application</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-primary">
+                <a href="#" class="hover:opacity-70">Home</a>
+                <a href="#" class="hover:opacity-70">About</a>
+                <a href="#" class="hover:opacity-70">Store</a>
+                <a href="#" class="hover:opacity-70">News</a>
+                <a href="#" class="hover:opacity-70">Blog</a>
+            </div>
+            <button class="rounded-full bg-primary text-white p-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
 
-{% block title %}Hello HomeController!{% endblock %}
+        {# Main Content #}
+        <div class="relative max-w-6xl mx-auto">
+            {# Login Form #}
+            <div class="relative z-10 max-w-md mx-auto bg-secondary rounded-full p-12 shadow-xl">
+                <h2 class="text-3xl font-bold text-white text-center mb-8">Mohater</h2>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Username" class="w-full rounded-full bg-white/90 border-0 p-2">
+                    <input type="password" placeholder="Password" class="w-full rounded-full bg-white/90 border-0 p-2">
+                    <button type="submit" class="w-full rounded-full bg-white text-primary hover:bg-gray-100 p-2 font-medium">Sign In</button>
+                </form>
+            </div>
 
-{% block body %}
-<div {{ react_component('Hello', { fullName: 'Fabien' }, {permanent: true}) }}>
-        Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
+            {# Color Schemes #}
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                {% for title in ['Forsten', 'Light Green', 'Evolution'] %}
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-primary mb-4">{{ title }}</h3>
+                        <p class="text-primary opacity-70 mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <button class="rounded-full bg-secondary text-white hover:bg-opacity-90 px-4 py-2">
+                            {% if loop.index == 1 %}#221B622{% elseif loop.index == 2 %}M05E50EC{% else %}854F5DC{% endif %}
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {# Icon Row #}
+            <div class="flex justify-center gap-4 mt-16">
+                {% for label in ['Green', 'Forest Green', 'Light Green', 'Beige', 'B5F45DC'] %}
+                    <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center">
+                        {% if label == 'Green' %}
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        {% else %}
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            {# Animal Habitat Section #}
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-primary text-center mb-8">Habitat des animaux</h2>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="md:flex">
+                        <div class="md:w-1/2">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Forêt tropicale" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:w-1/2 p-6">
+                            <h3 class="text-xl font-bold text-primary mb-4">La forêt tropicale</h3>
+                            <p class="text-primary opacity-70">
+                                La forêt tropicale est l'un des habitats les plus riches en biodiversité sur Terre. 
+                                Elle abrite une variété incroyable d'espèces animales, des singes colorés aux oiseaux 
+                                exotiques, en passant par les jaguars majestueux. Ces écosystèmes complexes fournissent 
+                                nourriture, abri et protection à d'innombrables créatures, jouant un rôle crucial dans 
+                                l'équilibre écologique de notre planète.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {# Nos amis les animaux Section #}
+            <section class="mt-16 bg-accent rounded-lg p-8 shadow-lg">
+                <h2 class="text-3xl font-bold text-primary text-center mb-8">Nos amis les animaux</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {% for animal in [
+                        { emoji: '🐘', name: 'Éléphant', description: 'Géant doux et intelligent, symbole de sagesse et de mémoire.' },
+                        { emoji: '🦁', name: 'Lion', description: 'Roi majestueux de la savane, incarnation du courage et de la force.' },
+                        { emoji: '🐧', name: 'Pingouin', description: 'Adorable nageur en smoking, maître de l\'adaptation au froid.' }
+                    ] %}
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105">
+                            <div class="p-6">
+                                <div class="flex items-center justify-center mb-4">
+                                    <span class="text-6xl">{{ animal.emoji }}</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-2 text-center">{{ animal.name }}</h3>
+                                <p class="text-primary opacity-70 text-center">
+                                    {{ animal.description }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-primary text-center mb-6">Galerie photo</h3>
+                    <div class="flex overflow-x-auto py-4">
+                        {% for i in 1..5 %}
+                            <div class="flex-shrink-0 w-64 mx-2">
+                                <img src="/placeholder.svg?height=200&width=200&text=Animal+{{ i }}" alt="Animal {{ i }}" class="w-full h-auto rounded-lg">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 
-    {# Component living in a subdirectory: "assets/react/controllers/Admin/OtherComponent" #}
-    <div {{ react_component('Admin/OtherComponent') }}></div>
-{% endblock %}
+    {# Footer #}
+    <footer class="bg-primary text-white py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Adresse
+                    </h3>
+                    <p>123 Rue de la Nature</p>
+                    <p>75001 Paris, France</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Horaires
+                    </h3>
+                    <p>Lundi - Vendredi: 9h - 18h</p>
+                    <p>Samedi: 10h - 16h</p>
+                    <p>Dimanche: Fermé</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        Contact
+                    </h3>
+                    <p class="flex items-center mb-2">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        +33 1 23 45 67 89
+                    </p>
+                    <p class="flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        contact@webapplication.com
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                <p>&copy; {{ "now"|date("Y") }} Web Application. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
