@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ViewAnimalController!{% endblock %}
+
+{% block body %}
+
+<div class="main-container">
+    <div class="row row d-flex align-items-center justify-content-center" style="height: auto;">
+        {% for animal in animals %}
+            <div class="col-md-4">
+                <div class="card" style="width: 10rem;">
+                    <img src="{{ asset('img/' ~ animal.image) }}" class="card-img-top" alt="image du l'animal">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <p class="card-text">{{ animal.species }}</p>
+                    <p class="card-text">{{ animal.diet }}</p>
+                    </p>
+                
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
